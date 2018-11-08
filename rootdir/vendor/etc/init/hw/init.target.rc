@@ -1,3 +1,4 @@
+ 
 # Copyright (c) 2013-2018, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -433,8 +434,8 @@ on charger
 #nubia add end
 service vendor.ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
    class main
-   user system
-   group radio diag inet log
+   user radio
+   group radio venro_qti_diag inet log
 
 service vendor.imsrcsservice /system/vendor/bin/imsrcsd
    class main
