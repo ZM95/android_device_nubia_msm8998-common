@@ -219,6 +219,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.sensors.dpc=true \
     ro.vendor.sensors.multishake=true
 
+# SurfaceFlinger
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.protected_contents=true
+
+# Timeservice
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.timed.enable=true \
+    persist.vendor.delta_time.enable=true
+
 # Shutdown
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.shutdown_timeout=0 \
