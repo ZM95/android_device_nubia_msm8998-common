@@ -31,6 +31,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.audio.fluence.speaker=false \
     vendor.audio.tunnel.encode=false \
     persist.vendor.audio.ras.enabled=false \
+    persist.vendor.bt.aac_frm_ctl.enabled=true \
     vendor.audio.offload.buffer.size.kb=32 \
     audio.offload.video=true \
     vendor.audio.offload.track.enable=true \
