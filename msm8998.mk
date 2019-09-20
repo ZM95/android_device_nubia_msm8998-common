@@ -411,6 +411,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
+# Soong
+PRODUCT_SOONG_NAMESPACES += \
+    device/nubia/msm8998-common
+
 # Tetheroffload
 PRODUCT_PACKAGES += \
     ipacm \
