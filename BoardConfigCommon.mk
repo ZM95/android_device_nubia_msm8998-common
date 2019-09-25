@@ -266,7 +266,7 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
 VENDOR_SECURITY_PATCH := 2019-02-05
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+include device/qcom/sepolicy-legacy-um/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
 
@@ -294,4 +294,4 @@ WIFI_DRIVER_OPERSTATE_PATH := "/sys/class/net/wlan0/operstate"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
--include vendor/nubia/msm8998-common/BoardConfigVendor.mk
+include vendor/nubia/msm8998-common/BoardConfigVendor.mk
