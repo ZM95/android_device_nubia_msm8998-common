@@ -463,9 +463,15 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
 
-# VNDK-SP
+# VNDK
 PRODUCT_PACKAGES += \
-    vndk-sp
+    libdng_sdk.vendor_32 \
+    libstdc++.vendor_32 \
+    vndk-ext
+
+# Trust HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.trust@1.0-service
 
 # VR
 PRODUCT_PACKAGES += \
