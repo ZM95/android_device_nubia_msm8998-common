@@ -77,6 +77,8 @@ function blob_fixup() {
 # Initialize the helper for common device
 setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${LINEAGE_ROOT}" true "${CLEAN_VENDOR}"
 
+BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
+
 extract "${MY_DIR}/proprietary-files-qc.txt" "${SRC}" \
         "${KANG}" --section "${SECTION}"
 
@@ -88,5 +90,8 @@ if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
     extract "${MY_DIR}/../${DEVICE}/proprietary-files.txt" "${SRC}" \
             "${KANG}" --section "${SECTION}"
 fi
+
+# Load libshim_camera.so
+patchelf --add-needed libshim_camera.so "$BLOB_ROOT"/vendor/lib/hw/camera.msm8998.so
 
 "${MY_DIR}/setup-makefiles.sh"
