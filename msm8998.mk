@@ -277,8 +277,8 @@ PRODUCT_PACKAGES += \
     Tag
 
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.0-impl-bcm \
-    android.hardware.nfc@1.0-service
+    android.hardware.nfc@1.1-impl-bcm \
+    android.hardware.nfc@1.1-service
 
 # OMX
 PRODUCT_PACKAGES += \
