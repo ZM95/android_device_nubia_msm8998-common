@@ -1,108 +1,69 @@
-# Copyright (c) 2011-2016, 2019 The Linux Foundation. All rights reserved.
+# Copyright (c) 2016, nubia. All rights reserved.
 #
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met:
-#     * Redistributions of source code must retain the above copyright
-#       notice, this list of conditions and the following disclaimer.
-#     * Redistributions in binary form must reproduce the above copyright
-#       notice, this list of conditions and the following disclaimer in the
-#       documentation and/or other materials provided with the distribution.
-#     * Neither the name of The Linux Foundation nor
-#       the names of its contributors may be used to endorse or promote
-#       products derived from this software without specific prior written
-#       permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
-# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
+# init.nb.rc
+# For all nubia projects defined in device/zte
 
-import /vendor/etc/init/hw/init.nubia.device.rc
-import /vendor/etc/init/hw/init.qcom.power.rc
-
-on init
+on boot
     chmod 0666 /mnt/vendor/persist/bluetooth/.bt_nv.bin
     chmod 0666 /mnt/vendor/persist/wlan_mac.bin
     chown wifi wifi /mnt/vendor/persist/wlan_mac.bin
+#add device for IRControl
+	chown system system /sys/class/ir_remote/ir_remote/enable
+	chmod 0644 /sys/class/ir_remote/ir_remote/enable
 
-    # ZRAM setup
-    write /sys/block/zram0/comp_algorithm lz4
-    write /proc/sys/vm/page-cluster 0
+	chown system system /dev/ttyMSM1
+	chmod 0664 /dev/ttyMSM1
 
-on boot
-    # Wifi driver state control
-    chown wifi wifi /sys/kernel/boot_wlan/boot_wlan
+        mkdir /data/vendor/nubiaeffect 0777 camera camera
 
-    # Wifi firmware reload path
-    chown wifi wifi /sys/module/wlan/parameters/fwpath
+	#for fpc
+	mkdir /dev/fpcSocket 0770 system system
+	chmod 0777 /dev/fpcSocket
+	chown system system /sys/bus/platform/devices/1.fpc1020/irq
+	chmod 0660 /sys/bus/platform/devices/1.fpc1020/irq
+	chown system system /sys/bus/platform/devices/1.fpc1020/wakeup_enable
+	chmod 0660 /sys/bus/platform/devices/1.fpc1020/wakeup_enable
 
-    #for audio driver to read
-    copy /persist/tas2555_cal.bin /data/vendor/audio/tas2555_cal.bin
-    chmod 0644 /data/vendor/audio/tas2555_cal.bin
-
-on post-fs-data
-    # NubiaCamera permissions
-    mkdir /data/vendor/nubiaeffect 0777 camera camera
-    #Create folder of camera
-    #ZTEMT:fengxun modify from 0770
-    mkdir /data/vendor/camera 0777 camera camera
-    touch /data/vendor/camera/aux_eeprom_data.dat
-    touch /data/vendor/camera/main_eeprom_data.dat
-    touch /data/vendor/camera/front_eeprom_data.dat
-    touch /data/vendor/camera/new_eeprom_data.dat
-    touch /data/vendor/camera/arcsoft_calibration.bin
-    touch /data/vendor/camera/bokeh_depth.bin
-    chmod 0775 /data/vendor/camera/aux_eeprom_data.dat
-    chmod 0775 /data/vendor/camera/main_eeprom_data.dat
-    chmod 0775 /data/vendor/camera/front_eeprom_data.dat
-    chmod 0777 /data/vendor/camera/new_eeprom_data.dat
-    chmod 0775 /data/vendor/camera/arcsoft_calibration.bin
-    chmod 0777 /data/vendor/camera/bokeh_depth.bin
-
-    # Fingerprint
-    mkdir /dev/fpcSocket 0770 system system
-    chmod -R 0777 /dev/fpcSocket
-    chown system system /sys/bus/platform/devices/1.fpc1020/irq
-    chmod 0660 /sys/bus/platform/devices/1.fpc1020/irq
-    chown system system /sys/bus/platform/devices/1.fpc1020/wakeup_enable
-    chmod 0660 /sys/bus/platform/devices/1.fpc1020/wakeup_enable
-
-    # Nubia light
     chown system system /sys/class/leds/nubia_led/brightness
-    chmod 664 /sys/class/leds/nubia_led/brightness
     chown system system /sys/class/leds/nubia_led/fade_parameter
-    chmod 664 /sys/class/leds/nubia_led/fade_parameter
     chown system system /sys/class/leds/nubia_led/grade_parameter
-    chmod 664 /sys/class/leds/nubia_led/grade_parameter
     chown system system /sys/class/leds/nubia_led/outn
-    chmod 664 /sys/class/leds/nubia_led/outn
     chown system system /sys/class/leds/nubia_led/blink_mode
-    chmod 664 /sys/class/leds/nubia_led/blink_mode
     chown system system /sys/class/leds/nubia_led/debug
-    chmod 664 /sys/class/leds/nubia_led/debug
+
+    chown system system /sys/class/leds/vibrator/debug
+    chown system system /sys/class/timed_output/vibrator_drv2605/enable
+    chmod 664  /sys/class/timed_output/vibrator_drv2605/enable
 
     # NFC
     chmod 777 /dev/bcm2079x
     chown nfc nfc /dev/bcm2079x
+
+    # NFC: create data/nfc for nv storage
     mkdir /data/nfc 770 nfc nfc
     mkdir /data/vendor/nfc 770 nfc nfc
+
+    # NFC HAL suffix
+    setprop ro.hardware.nfc_nci bcm2079x.default
 
     # Nubia begin feature add sensors node
     chmod 0777 /persist/sensors
 
-    # Hall_device
+    # hall_device
     chown system system /sys/class/hall_device/hall_device/enable
     chmod 0644 /sys/class/hall_device/hall_device/enable
 
-    # Proximity
+    #ir remote
+    chown system system /sys/class/ir_remote/ir_remote/enable
+    chmod 0644 /sys/class/ir_remote/ir_remote/enable
+
+    #chown system system /sys/class/leds/vibrator/debug
+    chown system system /sys/class/timed_output/vibrator_drv2605/enable
+    chmod 664  /sys/class/timed_output/vibrator_drv2605/enable
+    chmod 664 /dev/drv2605
+    chown system system /dev/drv2605
+
+    # proximity
     chown system system /sys/class/proximity/proximity/enable
     chown system system /sys/class/proximity/proximity/prox_uncover_max
     chown system system /sys/class/proximity/proximity/reg
@@ -175,7 +136,7 @@ on post-fs-data
     chmod 0664 /dev/input/event7
     chmod 0664 /dev/input/event8
 
-    # Light
+    # light
     chown system system /sys/class/light/light/enable
     chown system system /sys/class/light/light/tp_cfg
     chown system system /sys/class/light/light/fac_calibrate
@@ -221,15 +182,76 @@ on post-fs-data
     chown system system /sys/class/leds/nubia_led/outn
     chown system system /sys/class/leds/nubia_led/blink_mode
 
-    # Vibrator
-    chown system system /sys/class/timed_output/vibrator_drv2605/enable
-    chmod 664  /sys/class/timed_output/vibrator_drv2605/enable
-    chmod 664 /dev/drv2605
-    chown system system /dev/drv2605
+#nubia, tp&lcd node start
+on post-fs-data
+    mkdir /data/vendor/tp 0775 system system
+    rm /data/vendor/tp/ic_ver
+    rm /data/vendor/tp/reset
+    rm /data/vendor/tp/ic_detect
+    rm /data/vendor/tp/start_update
+    rm /data/vendor/tp/easy_wakeup_gesture
+    rm /data/vendor/tp/easy_sleep_palm
+    rm /data/vendor/tp/read_rt2
+    rm /data/vendor/tp/read_rt3
+    rm /data/vendor/tp/start_user_update
 
-on property:vendor.sys.boot_mode=nubia-factory-reset
-	nubia_factory_reset
+    chown system system /sys/class/touch/tpnode/synaptics/0dbutton
+    chown system system /sys/class/touch/tpnode/synaptics/ic_ver
+    symlink /sys/class/touch/tpnode/synaptics/ic_ver /data/vendor/tp/ic_ver
+    chown system system /sys/class/touch/tpnode/synaptics/reset
+    symlink /sys/class/touch/tpnode/synaptics/reset /data/vendor/tp/reset
+    chown system system /sys/class/touch/tpnode/synaptics/device/ic_detect
+    symlink /sys/class/touch/tpnode/synaptics/device/ic_detect /data/vendor/tp/ic_detect
+	
+    symlink /sys/class/touch/tpnode/synaptics/device/start_update /data/vendor/tp/start_update
+    chown system system /sys/class/touch/tpnode/synaptics/wake_gesture
+    symlink /sys/class/touch/tpnode/synaptics/wake_gesture /data/vendor/tp/easy_wakeup_gesture
+    chown system system /sys/class/touch/tpnode/synaptics/palm_sleep
+    symlink /sys/class/touch/tpnode/synaptics/palm_sleep /data/vendor/tp/easy_sleep_palm
+    write /sys/class/touch/tpnode/synaptics/start_update 1
+    chown system system /sys/kernel/lcd_enhance/colortmp
+    chown system system /sys/kernel/lcd_enhance/saturation
+    chown system system /sys/kernel/lcd_enhance/cabc
+    chown system system /sys/kernel/lcd_enhance/lcd_power_on
+    chown system system /sys/kernel/lcd_enhance/lcd_power_off
+    chown system system /sys/class/touch/tpnode/synaptics/f54/read_rt2
+    chown system system /sys/class/touch/tpnode/synaptics/f54/read_rt3
+    chown system system /sys/class/touch/tpnode/synaptics/remap
+    symlink /sys/class/touch/tpnode/synaptics/f54/read_rt2 /data/vendor/tp/read_rt2
+    symlink /sys/class/touch/tpnode/synaptics/f54/read_rt3 /data/vendor/tp/read_rt3
+    chown system system /sys/class/touch/tpnode/synaptics/device/start_user_update
+    symlink /sys/class/touch/tpnode/synaptics/device/start_user_update /data/vendor/tp/start_user_update
+    write /sys/class/touch/tpnode/synaptics/remap 18
 
+#nubia, tp&lcd node end
+
+on property:gsm.call.other_to_gsm=1
+    write /sys/class/touch/tpnode/synaptics/home 194
+    write /sys/class/touch/tpnode/synaptics/menu 194
+    write /sys/class/touch/tpnode/synaptics/back 194
+
+on property:gsm.call.other_to_gsm=2
+    write /sys/class/touch/tpnode/synaptics/home 147
+    write /sys/class/touch/tpnode/synaptics/menu 147
+    write /sys/class/touch/tpnode/synaptics/back 166
+
+on property:sys.tp.wakeup=*
+    write /sys/class/touch/tpnode/synaptics/wake_gesture ${sys.tp.wakeup}
+
+on property:sys.tp.palmsleep=*
+    write /sys/class/touch/tpnode/synaptics/palm_sleep ${sys.tp.palmsleep}
+#nubia end
+
+on property:persist.gesture.swapbuttons=*
+    write /sys/class/touch/tpnode/synaptics/swap_buttons ${persist.gesture.swapbuttons}
+
+on property:persist.gesture.palmsleep=*
+    write /sys/class/touch/tpnode/synaptics/palm_sleep ${persist.gesture.palmsleep}
+
+on property:persist.gesture.edgeslop=*
+    write /sys/class/touch/tpnode/synaptics/remap ${persist.gesture.edgeslop}
+
+# nubia Disable SSR to SoC restart
 on property:persist.vendor.ssr.restart_level=1
     write /sys/bus/msm_subsys/devices/subsys0/restart_level system
     write /sys/bus/msm_subsys/devices/subsys1/restart_level system
@@ -255,7 +277,8 @@ on property:persist.vendor.ap.restart_level=0
 on property:persist.vendor.ap.restart_level=1
     write /sys/module/msm_poweroff/parameters/download_mode 1
 
-on property:sys.boot_completed=1
-    # Enable ZRAM on boot_completed
-    swapon_all /vendor/etc/fstab.qcom
+on property:sys.tp.wakeup=*
+    write /sys/class/touch/tpnode/synaptics/wake_gesture ${sys.tp.wakeup}
 
+on property:sys.tp.palmsleep=*
+    write /sys/class/touch/tpnode/synaptics/palm_sleep ${sys.tp.palmsleep}

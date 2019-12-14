@@ -353,11 +353,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     init.msm.usb.configfs.rc \
-    init.nubia.rc \
+    init.nb.rc \
     init.qcom.rc \
-    init.qcom.power.rc \
     init.qcom.usb.rc \
-    init.target.rc
+    init.target.rc \
+    init.target.performance.rc
 
 # RCS
 PRODUCT_PACKAGES += \
