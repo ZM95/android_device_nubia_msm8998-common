@@ -1,6 +1,5 @@
 # TAS2555 Amplifier
 /dev/tas2555                                                                                                                             u:object_r:audio_device:s0
-/dev/tiload_node                                                                                                                         u:object_r:alarm_device:s0
 
 # Amplifier persist files
 /persist/tas2555_cal\.bin                                                                                                                u:object_r:persist_amp_cal_file:s0
@@ -17,6 +16,10 @@
 
 # FRP partition
 /dev/block/bootdevice/by-name/frp                                                                                                        u:object_r:frp_block_device:s0
+
+# Firmware
+/bt_firmware                                                                                                                             u:object_r:bt_firmware_file:s0
+/firmware                                                                                                                                u:object_r:firmware_file:s0
 
 # NFC
 /dev/bcm2079x                                                                                                                            u:object_r:nfc_device:s0
@@ -37,7 +40,6 @@
 
 # Shell files
 /(vendor|system/vendor)/bin/init\.qcom\.mem\.sh                                                                                          u:object_r:qti_init_shell_exec:s0
-/system/bin/move_time_data\.sh                                                                                                           u:object_r:move-time-data-sh_exec:s0
 
 # Vibrator
 /sys/devices/virtual/timed_output/vibrator(/.*)?                                                                                         u:object_r:sysfs_vibrator:s0
