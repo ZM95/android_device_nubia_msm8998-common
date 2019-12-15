@@ -338,15 +338,10 @@ PRODUCT_PACKAGES += \
     move_wifi_data.sh
 
 PRODUCT_PACKAGES += \
-    init.class_main.sh \
-    init.nubia.usb.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.mem.sh \
     init.qcom.post_boot.sh \
-    init.qcom.sensors.sh \
+    init.qcom.power.sh \
     init.qcom.sh \
-    init.qcom.usb.sh \
-    init.qti.qseecomd.sh
+    init.qcom.usb.sh 
 
 PRODUCT_PACKAGES += \
     fstab.qcom
