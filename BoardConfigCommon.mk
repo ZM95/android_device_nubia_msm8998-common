@@ -156,11 +156,10 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(PLATFORM_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
 
 # Camera
-# Force camera module to be compiled only in 32-bit mode on 64-bit systems
-# Once camera module can run in the native mode of the system (either
-# 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
+TARGET_USES_MEDIA_EXTENSIONS := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
+TARGET_USES_QTI_CAMERA2CLIENT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Charger
@@ -256,8 +255,11 @@ TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_nubia
 TARGET_RELEASETOOLS_EXTENSIONS := $(PLATFORM_PATH)
 
 # RIL
-PROTOBUF_SUPPORTED := true
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
+PROTOBUF_SUPPORTED := true
+TARGET_RIL_VARIANT := caf
+TARGET_USES_OLD_MNC_FORMAT := true
+TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true
 
 # Root
 BOARD_ROOT_EXTRA_SYMLINKS := \
@@ -271,7 +273,6 @@ VENDOR_SECURITY_PATCH := 2019-02-05
 
 # SELinux
 include device/qcom/sepolicy-legacy-um/sepolicy.mk
-
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
 
 # Timeservice
