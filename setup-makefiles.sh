@@ -16,8 +16,8 @@
 #
 
 set -e
-
-INITIAL_COPYRIGHT_YEAR=2017
+SRC=~/
+INITIAL_COPYRIGHT_YEAR=2019
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
