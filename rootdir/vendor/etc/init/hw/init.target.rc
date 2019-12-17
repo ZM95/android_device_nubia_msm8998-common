@@ -27,8 +27,7 @@
 #
 #
 
-# nubia customization
-import /vendor/etc/init/hw/init.nb.rc
+import /vendor/etc/init/hw/init.target.performance.rc
 
 on early-init
     write /proc/sys/kernel/sched_boost 1
