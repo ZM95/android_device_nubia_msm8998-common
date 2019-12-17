@@ -338,10 +338,23 @@ PRODUCT_PACKAGES += \
     move_wifi_data.sh
 
 PRODUCT_PACKAGES += \
+    init.class_main.sh \
+    init.crda.sh \
+    init.mdm.sh \
+    init.nubia.usb.sh \
+    init.qcom.class_core.sh \
+    init.qcom.coex.sh \
+    init.qcom.crashdata.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.efs.sync.sh \
     init.qcom.post_boot.sh \
-    init.qcom.power.sh \
+    init.qcom.sdio.sh \
+    init.qcom.sensors.sh \
     init.qcom.sh \
-    init.qcom.usb.sh 
+    init.qcom.usb.sh \
+    init.qti.fm.sh \
+    init.qti.ims.sh \
+    init.qti.qseecomd.sh
 
 PRODUCT_PACKAGES += \
     fstab.qcom
@@ -349,6 +362,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.msm.usb.configfs.rc \
     init.nb.rc \
+    init.qcom.factory.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
     init.target.rc \
