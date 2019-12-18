@@ -81,14 +81,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := nosdcard
 
-# Alipay
-PRODUCT_PACKAGES += \
-    IFAAService \
-    org.ifaa.android.manager
-
-PRODUCT_BOOT_JARS += \
-    org.ifaa.android.manager
-
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
