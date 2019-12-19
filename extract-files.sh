@@ -65,6 +65,12 @@ function blob_fixup() {
     vendor/etc/permissions/qcrilhook.xml)
         sed -i 's|/system/framework/qcrilhook.jar|/vendor/framework/qcrilhook.jar|g' "${2}"
         ;;
+    vendor/lib/libmmcamera2_stats_modules.so)
+    patchelf --remove-needed "libandroid.so" "${2}"
+        ;;
+    vendor/lib/hw/camera.msm8998.so)
+        patchelf --remove-needed "libandroid.so" "${2}"
+        ;;
     esac
 }
 
