@@ -152,7 +152,7 @@ PRODUCT_PACKAGES += \
     libbt-vendor
 
 # Camera
-PRODUCT_PACKAGES += \\
+PRODUCT_PACKAGES += \
     libshim_camera \
     Snap
 
