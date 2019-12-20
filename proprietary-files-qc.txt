@@ -191,7 +191,6 @@ lib64/vendor.qti.gnss@1.1.so
 lib64/vendor.qti.gnss@1.2.so
 lib64/vendor.qti.gnss@2.0.so
 lib64/vendor.qti.gnss@2.1.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/bin/hw/vendor.qti.gnss@1.0-service
 vendor/bin/loc_launcher
 vendor/bin/lowi-server
@@ -318,12 +317,6 @@ vendor/firmware/ipa_fws.b04
 vendor/firmware/ipa_fws.elf
 vendor/firmware/ipa_fws.mdt
 
-# IFAA    
-vendor/lib/vendor.nubia.ifaa@1.0-impl.so
-vendor/lib64/vendor.nubia.ifaa@1.0-impl.so
-lib/vendor.nubia.ifaa@1.0.so:vendor/lib/vendor.nubia.ifaa@1.0.so
-lib64/vendor.nubia.ifaa@1.0.so:vendor/lib64/vendor.nubia.ifaa@1.0.so
-
 # Keystore
 vendor/lib/hw/keystore.msm8998.so
 vendor/lib64/hw/keystore.msm8998.so
@@ -402,8 +395,8 @@ lib64/vendor.display.color@1.0.so:vendor/lib64/vendor.display.color@1.0.so
 lib64/vendor.display.postproc@1.0.so:vendor/lib64/vendor.display.postproc@1.0.so
 
 # QMI
-etc/permissions/qti_libpermissions.xml:vendor/etc/permissions/qti_libpermissions.xml
-etc/permissions/qti_permissions.xml:vendor/etc/permissions/qti_permissions.xml
+etc/permissions/qti_libpermissions.xml
+etc/permissions/qti_permissions.xml
 vendor/bin/irsc_util
 vendor/bin/pd-mapper
 vendor/lib/libdiag.so
