@@ -191,7 +191,6 @@ lib64/vendor.qti.gnss@1.1.so
 lib64/vendor.qti.gnss@1.2.so
 lib64/vendor.qti.gnss@2.0.so
 lib64/vendor.qti.gnss@2.1.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/bin/hw/vendor.qti.gnss@1.0-service
 vendor/bin/loc_launcher
 vendor/bin/lowi-server
@@ -395,8 +394,8 @@ lib64/vendor.display.color@1.0.so:vendor/lib64/vendor.display.color@1.0.so
 lib64/vendor.display.postproc@1.0.so:vendor/lib64/vendor.display.postproc@1.0.so
 
 # QMI
-etc/permissions/qti_libpermissions.xml:vendor/etc/permissions/qti_libpermissions.xml
-etc/permissions/qti_permissions.xml:vendor/etc/permissions/qti_permissions.xml
+etc/permissions/qti_libpermissions.xml
+etc/permissions/qti_permissions.xml
 lib64/libdiag_system.so
 vendor/bin/irsc_util
 vendor/bin/pd-mapper
