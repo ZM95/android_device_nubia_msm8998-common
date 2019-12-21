@@ -366,7 +366,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.msm.usb.configfs.rc \
     init.nb.rc \
-    init.qcom.factory.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
     init.target.rc \
