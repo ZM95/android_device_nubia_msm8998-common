@@ -65,6 +65,7 @@ function blob_fixup() {
     vendor/etc/permissions/qcrilhook.xml)
         sed -i 's|/system/framework/qcrilhook.jar|/vendor/framework/qcrilhook.jar|g' "${2}"
         ;;
+    esac
 }
 
 # Initialize the helper for common device
