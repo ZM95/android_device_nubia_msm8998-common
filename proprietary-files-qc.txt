@@ -568,13 +568,6 @@ vendor/lib64/libsns_low_lat_stream_stub.so
 vendor/lib64/sensors.oem.so
 vendor/lib64/sensors.ssc.so
 
-# Soter
--app/SoterService/SoterService.apk
-vendor/bin/hw/vendor.qti.hardware.soter@1.0-service
-vendor/etc/init/vendor.qti.hardware.soter@1.0-service.rc
-vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so
-lib64/vendor.qti.hardware.soter@1.0.so:vendor/lib64/vendor.qti.hardware.soter@1.0.so
-
 # Thermal
 vendor/etc/thermal-engine.conf
 vendor/bin/thermal-engine
