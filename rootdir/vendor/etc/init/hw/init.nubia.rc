@@ -54,12 +54,12 @@ on post-fs-data
     #Create folder of camera
     #ZTEMT:fengxun modify from 0770
     mkdir /data/vendor/camera 0777 camera camera
-    touch /data/vendor/camera/aux_eeprom_data.dat
-    touch /data/vendor/camera/main_eeprom_data.dat
-    touch /data/vendor/camera/front_eeprom_data.dat
-    touch /data/vendor/camera/new_eeprom_data.dat
-    touch /data/vendor/camera/arcsoft_calibration.bin
-    touch /data/vendor/camera/bokeh_depth.bin
+    #touch /data/vendor/camera/aux_eeprom_data.dat
+    #touch /data/vendor/camera/main_eeprom_data.dat
+    #touch /data/vendor/camera/front_eeprom_data.dat
+    #touch /data/vendor/camera/new_eeprom_data.dat
+    #touch /data/vendor/camera/arcsoft_calibration.bin
+    #touch /data/vendor/camera/bokeh_depth.bin
     chmod 0775 /data/vendor/camera/aux_eeprom_data.dat
     chmod 0775 /data/vendor/camera/main_eeprom_data.dat
     chmod 0775 /data/vendor/camera/front_eeprom_data.dat
@@ -227,9 +227,7 @@ on post-fs-data
     chmod 664 /dev/drv2605
     chown system system /dev/drv2605
 
-on property:vendor.sys.boot_mode=nubia-factory-reset
-	nubia_factory_reset
-
+# nubia Disable SSR to SoC restart
 on property:persist.vendor.ssr.restart_level=1
     write /sys/bus/msm_subsys/devices/subsys0/restart_level system
     write /sys/bus/msm_subsys/devices/subsys1/restart_level system
