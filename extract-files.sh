@@ -65,6 +65,12 @@ function blob_fixup() {
     vendor/etc/permissions/qcrilhook.xml)
         sed -i 's|/system/framework/qcrilhook.jar|/vendor/framework/qcrilhook.jar|g' "${2}"
         ;;
+    vendor/lib/libandroid.so)
+        sed -i 's|/system/lib/libandroid.so|/vendor/lib/libandroid.so|g' "${2}"
+        ;;
+    vendor/lib64/libandroid.so)
+        sed -i 's|/system/lib64/libandroid.so|/vendor/lib64/libandroid.so|g' "${2}"
+        ;;
     esac
 }
 
