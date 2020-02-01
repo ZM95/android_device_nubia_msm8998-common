@@ -151,6 +151,8 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    camera.msm8998 \
+    libmm-qcamera \
     libshim_camera \
     Snap
 
